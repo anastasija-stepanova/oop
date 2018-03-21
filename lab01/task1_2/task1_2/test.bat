@@ -5,37 +5,37 @@ rem Переменная PROGRAM будет хранить первый аргумент командной строки заключённы
 set PROGRAM="%~1"
 
 rem проверяем переворот цифры 0 (копируем его во временную папку текущего пользователя)
-%PROGRAM% number_zero.txt %TEMP%\number_zero.txt
+%PROGRAM% "0" %TEMP%\number_zero.txt > %TEMP%\output.txt
 if ERRORLEVEL 1 goto err
-fc.exe %TEMP%\number_zero.txt number_zero.txt
+fc.exe %TEMP%\output.txt number_zero.txt
 if ERRORLEVEL 1 goto err
 
 rem проверяем переворот цифры 1
-%PROGRAM% number_one_input.txt %TEMP%\number_one.txt
+%PROGRAM% "1" > %TEMP%\number_one.txt
 if ERRORLEVEL 1 goto err
 fc.exe %TEMP%\number_one.txt number_one_output.txt
 if ERRORLEVEL 1 goto err
 
 rem проверяем переворот цифры 6
-%PROGRAM% number_six_input.txt %TEMP%\number_six.txt
+%PROGRAM% "6" > %TEMP%\number_six.txt
 if ERRORLEVEL 1 goto err
 fc.exe %TEMP%\number_six.txt number_six_output.txt
 if ERRORLEVEL 1 goto err
 
 rem проверяем переворот числа 255
-%PROGRAM% number_255.txt %TEMP%\number_255.txt
+%PROGRAM% "255" > %TEMP%\number_255.txt
 if ERRORLEVEL 1 goto err
 fc.exe %TEMP%\number_255.txt number_255.txt
 if ERRORLEVEL 1 goto err
 
 rem ожидаем ненулевой код ошибки при перевороте числа не входящего в диапазон
-%PROGRAM% not_in_range_input.txt %TEMP%\not_in_range_input.txt
+%PROGRAM% "256" > %TEMP%\not_in_range_input.txt
 if NOT ERRORLEVEL 1 goto err
 fc.exe %TEMP%\not_in_range_input.txt not_in_range_output.txt
 if ERRORLEVEL 1 goto err
 
 rem ожидаем ненулевой код ошибки при перевороте строки, которая не может быть числом
-%PROGRAM% can_not_be_number_input.txt %TEMP%\can_not_be_number_input.txt
+%PROGRAM% "Hello" > %TEMP%\can_not_be_number_input.txt
 if NOT ERRORLEVEL 1 goto err
 fc.exe %TEMP%\can_not_be_number_input.txt can_not_be_number_output.txt
 if ERRORLEVEL 1 goto err

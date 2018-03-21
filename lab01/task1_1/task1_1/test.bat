@@ -23,7 +23,7 @@ fc.exe %TEMP%\lines.txt lines.txt
 if ERRORLEVEL 1 goto err
 
 rem ожидаем ненулевой код ошибки при копировании несуществующего файла
-%PROGRAM% non_existing_file_name.txt %TEMP%\non_existing_file_name.txt > "%TEMP%\output.txt"
+%PROGRAM% non-existing-file-name.txt %TEMP%\non-existing-file-name.txt > "%TEMP%\output.txt"
 if NOT ERRORLEVEL 1 goto err
 fc.exe "%TEMP%\output.txt" expected_output_when_input_file_is_missing.txt
 if ERRORLEVEL 1 goto err
@@ -31,6 +31,7 @@ if ERRORLEVEL 1 goto err
 rem ожидаем ненулевой код ошибки при невозможности записи в выходной файл (в исполняемый файл программы)
 %PROGRAM% lines.txt %PROGRAM% > %TEMP%\output.txt
 if NOT ERRORLEVEL 1 goto err
+
 
 echo Program testing succeeded
 exit 0

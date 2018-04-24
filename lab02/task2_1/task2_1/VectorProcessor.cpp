@@ -27,20 +27,20 @@ void PrintVectorNumbers(std::ostream &output, std::vector<double> &numbers)
 	output << std::fixed;
 	output.precision(3);
 
-	std::vector <int>::size_type vectorNumbersSize = numbers.size();
-	for (std::vector <int>::size_type i = 0; i < vectorNumbersSize; ++i)
+	for (auto number : numbers)
 	{
-		output << numbers[i] << ' ';
+		output << number << ' ';
 	}
 	output << "\n";
 }
 
-void ProcessVector(std::vector<double> &numbers)
+void ProcessVector(std::vector<double> &numbers, std::vector<double> &modifiedNumbers)
 {
+	modifiedNumbers.resize(numbers.size());
 	if (numbers.empty())
 	{
 		return;
 	}
-	double minNumber = numbers[0];
-	std::transform(numbers.begin(), numbers.end(), numbers.begin(), [=](double number) { return number *= minNumber; });
+	const double MIN_NUMBER = *min_element(numbers.begin(), numbers.end());
+	std::transform(numbers.begin(), numbers.end(), modifiedNumbers.begin(), [=](double number) { return number *= MIN_NUMBER; });
 }

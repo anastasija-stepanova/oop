@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 #include <tchar.h>
-#include <unordered_map>
+#include <map>
 #include <boost/algorithm/string/replace.hpp>
 
 #define BOOST_TEST_INCLUDED

@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "htmlDecode.h"
 
-static const std::unordered_map<std::string, std::string> HTML_ENTITIES
+static const std::map<std::string, std::string> HTML_ENTITIES
 {
 	{ "&quot;", "\"" },
 	{ "&apos;", "'" },
@@ -10,7 +10,7 @@ static const std::unordered_map<std::string, std::string> HTML_ENTITIES
 	{ "&amp;", "&" }
 };
 
-std::string DecodeHtmlEntity(const std::string &inputString, const std::string &searchString, const std::string &replacementString)
+std::string ReplaceHtmlEntityWithSymbol(const std::string &inputString, const std::string &searchString, const std::string &replacementString)
 {
 	std::string result;
 	if (searchString.empty())
@@ -40,7 +40,7 @@ std::string HtmlDecode(std::string const& html)
 	std::string result = html;
 	for (auto& htmlEntity : HTML_ENTITIES)
 	{
-		result = DecodeHtmlEntity(result, htmlEntity.first, htmlEntity.second);
+		result = ReplaceHtmlEntityWithSymbol(result, htmlEntity.first, htmlEntity.second);
 	}
 	return result;
 }

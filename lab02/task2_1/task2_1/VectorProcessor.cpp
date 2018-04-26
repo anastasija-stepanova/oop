@@ -41,6 +41,6 @@ void ProcessVector(std::vector<double> &numbers, std::vector<double> &modifiedNu
 	{
 		return;
 	}
-	const double MIN_NUMBER = *min_element(numbers.begin(), numbers.end());
-	std::transform(numbers.begin(), numbers.end(), modifiedNumbers.begin(), [=](double number) { return number *= MIN_NUMBER; });
+	const double minNumber = *min_element(numbers.begin(), numbers.end());
+	std::transform(numbers.begin(), numbers.end(), modifiedNumbers.begin(), [=](double number) { return number *= minNumber; });
 }

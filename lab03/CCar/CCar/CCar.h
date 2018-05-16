@@ -30,8 +30,8 @@ public:
 	bool TurnOnEngine();
 	bool TurnOffEngine();
 
-	bool SetGear(ConditionOfGearBox gear);
-	bool SetSpeed(int speed);
+	bool SetGear(ConditionOfGearBox const& gear);
+	bool SetSpeed(int const speed);
 
 	ConditionOfGearBox GetGear() const;
 	int GetSpeed() const;
@@ -45,6 +45,6 @@ private:
 	ConditionOfGearBox m_gear;
 	int m_speed;
 
-	static bool SpeedIsInRange(Speed range, int speed);
-	Speed GetAllowableSpeed(ConditionOfGearBox gear) const;
+	static bool SpeedIsInRange(Speed const& range, int speed);
+	Speed GetAllowableSpeed(ConditionOfGearBox const& gear) const;
 };

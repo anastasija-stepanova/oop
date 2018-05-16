@@ -4,7 +4,7 @@
 using namespace std;
 using namespace std::placeholders;
 
-CCarController::CCarController(CCar& car, istream& input, ostream& output)
+CCarController::CCarController(CCar & car, istream & const input, ostream & const output)
 	: m_car(car)
 	, m_input(input)
 	, m_output(output)
@@ -59,7 +59,7 @@ void CCarController::EngineOn(istream& input)
 
 void CCarController::EngineOff(istream& input)
 {
-	if (m_car.GetGear() != ConditionOfGearBox::Neutral || m_car.GetSpeed() != 0)
+	if ((m_car.GetGear() != ConditionOfGearBox::Neutral) ||( m_car.GetSpeed() != 0))
 	{
 		m_output << "Car had not turned off" << endl;
 	}

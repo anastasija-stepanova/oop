@@ -4,17 +4,21 @@
 using namespace std;
 using namespace std::placeholders;
 
-CCarController::CCarController(CCar & car, istream & const input, ostream & const output)
+static const map<Direction, string> DIRECTION = {
+	{ Direction::Reverse, "reverse" },
+	{ Direction::Still, "still" },
+	{ Direction::Forward, "forward" }
+};
+
+CCarController::CCarController(CCar& car, istream& input, ostream& output)
 	: m_car(car)
 	, m_input(input)
 	, m_output(output)
-	, m_actionMap({
-		{ "Info", bind(&CCarController::Info, this, _1) },
-		{ "EngineOn", bind(&CCarController::EngineOn, this, _1) },
-		{ "EngineOff", bind(&CCarController::EngineOff, this, _1) },
-		{ "SetGear", bind(&CCarController::SetGear, this, _1) },
-		{ "SetSpeed", bind(&CCarController::SetSpeed, this, _1) }
-	})
+	, m_actionMap({ { "Info", bind(&CCarController::Info, this, _1) },
+		  { "EngineOn", bind(&CCarController::EngineOn, this, _1) },
+		  { "EngineOff", bind(&CCarController::EngineOff, this, _1) },
+		  { "SetGear", bind(&CCarController::SetGear, this, _1) },
+		  { "SetSpeed", bind(&CCarController::SetSpeed, this, _1) } })
 {
 }
 
@@ -37,10 +41,10 @@ bool CCarController::HandleCommand()
 
 void CCarController::Info(istream& input)
 {
-	string carCondition = m_car.GetCarCondition() ? "on" : "off";
+	string carCondition = m_car.EngineIsTurnOn() ? "on" : "off";
 
 	m_output << "Car is turned " + carCondition << endl;
-	m_output << "Direction is " << static_cast<int>(m_car.GetDirection()) << endl;
+	m_output << "Direction is " << (DIRECTION.at(m_car.GetDirection())) << endl;
 	m_output << "Speed is " << m_car.GetSpeed() << endl;
 	m_output << "Condition of gear box is " << static_cast<int>(m_car.GetGear()) << endl;
 }
@@ -53,19 +57,19 @@ void CCarController::EngineOn(istream& input)
 	}
 	else
 	{
-		m_output << "Car had turned on" << endl;
+		m_output << "Car has turned on" << endl;
 	}
 }
 
 void CCarController::EngineOff(istream& input)
 {
-	if ((m_car.GetGear() != ConditionOfGearBox::Neutral) ||( m_car.GetSpeed() != 0))
+	if ((m_car.GetGear() != Gear::Neutral) || (m_car.GetSpeed() != 0))
 	{
-		m_output << "Car had not turned off" << endl;
+		m_output << "Car has not turned off" << endl;
 	}
 	else if (m_car.TurnOffEngine())
 	{
-		m_output << "Car had turned off" << endl;
+		m_output << "Car has turned off" << endl;
 	}
 	else if (!m_car.TurnOffEngine())
 	{
@@ -75,34 +79,34 @@ void CCarController::EngineOff(istream& input)
 
 void CCarController::SetGear(istream& input)
 {
-	if (!m_car.GetCarCondition())
+	if (!m_car.EngineIsTurnOn())
 	{
-		m_output << "Car had not turned on" << endl;
+		m_output << "Car has not turned on" << endl;
 		return;
 	}
 	int gear;
 	input >> gear;
-	if (!m_car.SetGear(static_cast<ConditionOfGearBox>(gear)))
+	if (!m_car.SetGear(static_cast<Gear>(gear)))
 	{
-		m_output << "Condition of gear box had not changed" << endl;
+		m_output << "Condition of gear box has not changed" << endl;
 		return;
 	}
-	m_output << "Condition of gear box had changed" << endl;
+	m_output << "Condition of gear box has changed" << endl;
 }
 
 void CCarController::SetSpeed(istream& input)
 {
-	if (!m_car.GetCarCondition())
+	if (!m_car.EngineIsTurnOn())
 	{
-		m_output << "Car had not turned on" << endl;
+		m_output << "Car has not turned on" << endl;
 		return;
 	}
 	int speed;
 	input >> speed;
 	if (!m_car.SetSpeed(speed))
 	{
-		m_output << "Speed had not changed" << endl;
+		m_output << "Speed has not changed" << endl;
 		return;
 	}
-	m_output << "Speed had changed" << endl;
+	m_output << "Speed has changed" << endl;
 }

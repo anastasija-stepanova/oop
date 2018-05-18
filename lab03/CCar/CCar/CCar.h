@@ -1,11 +1,9 @@
 #pragma once
-#include "stdafx.h"
+#include <map>
 
-using namespace std;
+using Speed = std::pair<int, int>;
 
-using Speed = pair<int, int>;
-
-enum class ConditionOfGearBox
+enum class Gear
 {
 	Reverse = -1,
 	Neutral = 0,
@@ -30,21 +28,18 @@ public:
 	bool TurnOnEngine();
 	bool TurnOffEngine();
 
-	bool SetGear(ConditionOfGearBox const& gear);
-	bool SetSpeed(int const speed);
+	bool SetGear(const Gear & gear);
+	bool SetSpeed(const int speed);
 
-	ConditionOfGearBox GetGear() const;
+	Gear GetGear() const;
 	int GetSpeed() const;
 
-	bool GetCarCondition() const;
+	bool EngineIsTurnOn() const;
 
 	Direction GetDirection() const;
 
 private:
-	bool m_carCondition;
-	ConditionOfGearBox m_gear;
+	bool m_engineIsTurnedOn;
+	Gear m_gear;
 	int m_speed;
-
-	static bool SpeedIsInRange(Speed const& range, int speed);
-	Speed GetAllowableSpeed(ConditionOfGearBox const& gear) const;
 };

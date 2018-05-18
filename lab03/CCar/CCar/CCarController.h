@@ -1,25 +1,23 @@
-#pragma once
-#include "stdafx.h"
+#include <map>
+#include <functional>
 #include "CCar.h"
-
-using namespace std;
 
 class CCarController
 {
 public:
-	CCarController(CCar& car, istream& input, ostream& output);
+	CCarController(CCar& car, std::istream& input, std::ostream& output);
 	bool HandleCommand();
 
 private:
-	typedef map<string, function<void(istream& args)>> ActionMap;
+	typedef std::map<std::string, std::function<void(std::istream& args)>> ActionMap;
 	CCar& m_car;
-	istream& m_input;
-	ostream& m_output;
+	std::istream& m_input;
+	std::ostream& m_output;
 	const ActionMap m_actionMap;
 
-	void Info(istream& input);
-	void EngineOn(istream& input);
-	void EngineOff(istream& input);
-	void SetGear(istream& input);
-	void SetSpeed(istream& input);
+	void Info(std::istream& input);
+	void EngineOn(std::istream& input);
+	void EngineOff(std::istream& input);
+	void SetGear(std::istream& input);
+	void SetSpeed(std::istream& input);
 };

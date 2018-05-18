@@ -2,23 +2,23 @@
 
 using namespace std;
 
-const int SIZE_MATRIX = 3;
+const int MATRIX_SIZE = 3;
 
 struct Matrix3x3
 {
-	double coefficients[SIZE_MATRIX][SIZE_MATRIX];
+	double coefficients[MATRIX_SIZE][MATRIX_SIZE];
 };
 
 struct Matrix2x2
 {
-	double coefficients[SIZE_MATRIX - 1][SIZE_MATRIX - 1];
+	double coefficients[MATRIX_SIZE - 1][MATRIX_SIZE - 1];
 };
 
 bool ReadMatrix(istream &inputFileName, Matrix3x3 &matrix)
 {
-	for (int i = 0; i < SIZE_MATRIX; ++i)
+	for (int i = 0; i < MATRIX_SIZE; ++i)
 	{
-		for (int j = 0; j < SIZE_MATRIX; ++j)
+		for (int j = 0; j < MATRIX_SIZE; ++j)
 		{
 			if (!(inputFileName >> matrix.coefficients[j][i]))
 			{
@@ -63,12 +63,12 @@ Matrix2x2 CreateTwoByTwoMatrix(const Matrix3x3 &matrix, int row, int column)
 	Matrix2x2 matrix2x2;
 	int matrix2x2Row = 0;
 
-	for (int i = 0; i < SIZE_MATRIX; ++i)
+	for (int i = 0; i < MATRIX_SIZE; ++i)
 	{
 		int matrix2x2Col = 0;
 		if (i != column)
 		{
-			for (int j = 0; j < SIZE_MATRIX; ++j)
+			for (int j = 0; j < MATRIX_SIZE; ++j)
 			{
 				if (j != row)
 				{
@@ -91,9 +91,9 @@ Matrix3x3 FindMinorsMatrix(const Matrix3x3 &matrix)
 {
 	Matrix3x3 minorMatrix;
 
-	for (int i = 0; i < SIZE_MATRIX; ++i)
+	for (int i = 0; i < MATRIX_SIZE; ++i)
 	{
-		for (int j = 0; j < SIZE_MATRIX; ++j)
+		for (int j = 0; j < MATRIX_SIZE; ++j)
 		{
 			Matrix2x2 twoByTwoMatrix = CreateTwoByTwoMatrix(matrix, j, i);
 			minorMatrix.coefficients[i][j] = GetDeterminantTwoByTwoMatrix(twoByTwoMatrix);
@@ -121,9 +121,9 @@ Matrix3x3 CreateTransposeMatrix(const Matrix3x3 &matrix)
 {
 	Matrix3x3 transposeMatrix;
 
-	for (int i = 0; i < SIZE_MATRIX; ++i)
+	for (int i = 0; i < MATRIX_SIZE; ++i)
 	{
-		for (int j = 0; j < SIZE_MATRIX; ++j)
+		for (int j = 0; j < MATRIX_SIZE; ++j)
 		{
 			transposeMatrix.coefficients[i][j] = matrix.coefficients[j][i];
 		}
@@ -131,18 +131,18 @@ Matrix3x3 CreateTransposeMatrix(const Matrix3x3 &matrix)
 	return transposeMatrix;
 }
 
-Matrix3x3 GetMatrixWithCoefficientsDividedByDeterminant(const Matrix3x3 &transposeMatrix, double det)
+Matrix3x3 GetMatrixWithCoefficientsDividedByNumber(const Matrix3x3 &matrix, double number)
 {
-	Matrix3x3 matrix;
+	Matrix3x3 resultMatrix;
 
-	for (int i = 0; i < SIZE_MATRIX; ++i)
+	for (int i = 0; i < MATRIX_SIZE; ++i)
 	{
-		for (int j = 0; j < SIZE_MATRIX; ++j)
+		for (int j = 0; j < MATRIX_SIZE; ++j)
 		{
-			matrix.coefficients[i][j] = transposeMatrix.coefficients[i][j] / det;
+			resultMatrix.coefficients[i][j] = matrix.coefficients[i][j] / number;
 		}
 	}
-	return matrix;
+	return resultMatrix;
 }
 
 void PrintMatrix(const Matrix3x3 &matrix)
@@ -150,18 +150,18 @@ void PrintMatrix(const Matrix3x3 &matrix)
 	cout << fixed;
 	cout.precision(3);
 
-	for (int i = 0; i < SIZE_MATRIX; ++i)
+	for (int i = 0; i < MATRIX_SIZE; ++i)
 	{
-		for (int j = 0; j < SIZE_MATRIX; ++j)
+		for (int j = 0; j < MATRIX_SIZE; ++j)
 		{
 			cout << matrix.coefficients[i][j];
 
-			if (!(i == SIZE_MATRIX - 1 && j == SIZE_MATRIX - 1))
+			if (!(i == MATRIX_SIZE - 1 && j == MATRIX_SIZE - 1))
 			{
 				cout << ' ';
 			}
 		}
-		if (i != SIZE_MATRIX - 1)
+		if (i != MATRIX_SIZE - 1)
 		{
 			cout << endl;
 		}
@@ -178,6 +178,6 @@ bool FindInverseMatrix(const Matrix3x3 &matrix, Matrix3x3 &inverseMatrix)
 
 	Matrix3x3 algebraicComplementsMatrix = FindAlgebraicComplementsMatrix(matrix);
 	Matrix3x3 transposeMatrix = CreateTransposeMatrix(algebraicComplementsMatrix);
-	inverseMatrix = GetMatrixWithCoefficientsDividedByDeterminant(transposeMatrix, determinant);
+	inverseMatrix = GetMatrixWithCoefficientsDividedByNumber(transposeMatrix, determinant);
 	return true;
 }

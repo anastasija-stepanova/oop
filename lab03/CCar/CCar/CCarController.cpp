@@ -18,7 +18,8 @@ CCarController::CCarController(CCar& car, istream& input, ostream& output)
 		  { "EngineOn", bind(&CCarController::EngineOn, this, _1) },
 		  { "EngineOff", bind(&CCarController::EngineOff, this, _1) },
 		  { "SetGear", bind(&CCarController::SetGear, this, _1) },
-		  { "SetSpeed", bind(&CCarController::SetSpeed, this, _1) } })
+		  { "SetSpeed", bind(&CCarController::SetSpeed, this, _1) },
+		  { "#10#13", bind(&CCarController::Exit, this, _1) } })
 {
 }
 
@@ -37,6 +38,11 @@ bool CCarController::HandleCommand()
 		return true;
 	}
 	return false;
+}
+
+void CCarController::Exit(istream& input)
+{
+	return;
 }
 
 void CCarController::Info(istream& input)

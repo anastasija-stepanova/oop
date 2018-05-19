@@ -18,8 +18,7 @@ CCarController::CCarController(CCar& car, istream& input, ostream& output)
 		  { "EngineOn", bind(&CCarController::EngineOn, this, _1) },
 		  { "EngineOff", bind(&CCarController::EngineOff, this, _1) },
 		  { "SetGear", bind(&CCarController::SetGear, this, _1) },
-		  { "SetSpeed", bind(&CCarController::SetSpeed, this, _1) },
-		  { "#10#13", bind(&CCarController::Exit, this, _1) } })
+		  { "SetSpeed", bind(&CCarController::SetSpeed, this, _1) } })
 {
 }
 
@@ -40,11 +39,6 @@ bool CCarController::HandleCommand()
 	return false;
 }
 
-void CCarController::Exit(istream& input)
-{
-	return;
-}
-
 void CCarController::Info(istream& input)
 {
 	string carCondition = m_car.EngineIsTurnOn() ? "on" : "off";
@@ -63,7 +57,7 @@ void CCarController::EngineOn(istream& input)
 	}
 	else
 	{
-		m_output << "Car has turned on" << endl;
+		m_output << "Car has been turned on" << endl;
 	}
 }
 
@@ -71,11 +65,11 @@ void CCarController::EngineOff(istream& input)
 {
 	if ((m_car.GetGear() != Gear::Neutral) || (m_car.GetSpeed() != 0))
 	{
-		m_output << "Car has not turned off" << endl;
+		m_output << "Car has not been turned off" << endl;
 	}
 	else if (m_car.TurnOffEngine())
 	{
-		m_output << "Car has turned off" << endl;
+		m_output << "Car has been turned off" << endl;
 	}
 	else if (!m_car.TurnOffEngine())
 	{
@@ -87,32 +81,32 @@ void CCarController::SetGear(istream& input)
 {
 	if (!m_car.EngineIsTurnOn())
 	{
-		m_output << "Car has not turned on" << endl;
+		m_output << "Car has not been turned on" << endl;
 		return;
 	}
 	int gear;
 	input >> gear;
 	if (!m_car.SetGear(static_cast<Gear>(gear)))
 	{
-		m_output << "Condition of gear box has not changed" << endl;
+		m_output << "Condition of gear box has not been changed" << endl;
 		return;
 	}
-	m_output << "Condition of gear box has changed" << endl;
+	m_output << "Condition of gear box has been changed" << endl;
 }
 
 void CCarController::SetSpeed(istream& input)
 {
 	if (!m_car.EngineIsTurnOn())
 	{
-		m_output << "Car has not turned on" << endl;
+		m_output << "Car has not been turned on" << endl;
 		return;
 	}
 	int speed;
 	input >> speed;
 	if (!m_car.SetSpeed(speed))
 	{
-		m_output << "Speed has not changed" << endl;
+		m_output << "Speed has not been changed" << endl;
 		return;
 	}
-	m_output << "Speed has changed" << endl;
+	m_output << "Speed has been changed" << endl;
 }

@@ -24,10 +24,10 @@ CCarController::CCarController(CCar& car, istream& input, ostream& output)
 
 bool CCarController::HandleCommand()
 {
-	std::string commandLine;
-	std::getline(m_input, commandLine);
-	std::istringstream strstream(commandLine);
-	std::string action;
+	string commandLine;
+	getline(m_input, commandLine);
+	istringstream strstream(commandLine);
+	string action;
 	strstream >> action;
 
 	auto it = m_actionMap.find(action);

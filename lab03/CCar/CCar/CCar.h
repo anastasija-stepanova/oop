@@ -28,7 +28,7 @@ public:
 	bool TurnOnEngine();
 	bool TurnOffEngine();
 
-	bool SetGear(const Gear & gear);
+	bool SetGear(const Gear gear);
 	bool SetSpeed(const int speed);
 
 	Gear GetGear() const;

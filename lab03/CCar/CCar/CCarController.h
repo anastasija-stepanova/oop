@@ -20,5 +20,4 @@ private:
 	void EngineOff(std::istream& input);
 	void SetGear(std::istream& input);
 	void SetSpeed(std::istream& input);
-	void Exit(std::istream& input);
 };

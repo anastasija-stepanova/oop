@@ -20,8 +20,9 @@ protected:
 	void AppendProperties(std::ostream& strm) const;
 
 private:
+	bool OrientingAreaOfTriangleIsEqualZero(const CPoint& v1, const CPoint& v2, const CPoint& v3) const;
+
 	CPoint m_firstVertex;
 	CPoint m_secondVertex;
 	CPoint m_thirdVertex;
-	bool OrientingAreaOfTriangleIsEqualZero(const CPoint& v1, const CPoint& v2, const CPoint& v3) const;
 };

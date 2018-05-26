@@ -1,7 +1,7 @@
 #pragma once
 #include <map>
 
-using Speed = std::pair<int, int>;
+using SpeedRange = std::pair<int, int>;
 
 enum class Gear
 {

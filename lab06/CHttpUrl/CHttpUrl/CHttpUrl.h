@@ -1,7 +1,7 @@
 #pragma once
 #include "CUrlParsingError.h"
 
-enum Protocol
+enum class Protocol
 {
 	HTTP = 80,
 	HTTPS = 443,
@@ -11,7 +11,7 @@ class CHttpUrl
 {
 public:
 	CHttpUrl(std::string const& url);
-	CHttpUrl(std::string const& domain, std::string const& document, Protocol protocol = HTTP);
+	CHttpUrl(std::string const& domain, std::string const& document, Protocol protocol = Protocol::HTTP);
 	CHttpUrl(std::string const& domain, std::string const& document, Protocol protocol, unsigned short port);
 
 	std::string GetUrl() const;
@@ -21,7 +21,7 @@ public:
 	unsigned short GetPort() const;
 
 private:
-	
+
 	Protocol ParseProtocol(std::string const& protocol);
 	std::string ParseDomain(std::string const& domain);
 	unsigned short ParsePort(std::string const& url);

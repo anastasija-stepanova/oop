@@ -17,12 +17,7 @@ int main(int argc, char *argv[])
 	string dictionaryFileName = argv[1];
 	cout << dictionaryFileName << endl;
 	multimap<string, string> dictionary;
-	ReadDictionaryToMap(dictionaryFileName, dictionary);
-	for (auto it = dictionary.begin(); it != dictionary.end(); ++it)
-	{
-		cout << (*it).first << ' ';
-		cout << (*it).second << endl;
-	}
+	ReadDictionaryFromFile(dictionaryFileName, dictionary);
 
 	bool dialogResult = DialogWithUser(dictionary);
 

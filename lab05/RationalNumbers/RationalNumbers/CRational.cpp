@@ -86,7 +86,7 @@ pair<int, CRational> CRational::ToCompoundFraction() const
 	int integer = static_cast<int>(ToDouble());
 	int numerator = m_numerator - (m_denominator * integer);
 
-	return make_pair<int, CRational>(move(integer), CRational(numerator, m_denominator));
+	return make_pair(integer, CRational(numerator, m_denominator));
 }
 
 void CRational::Normalize()

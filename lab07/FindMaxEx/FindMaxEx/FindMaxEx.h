@@ -6,17 +6,17 @@ bool FindMax(
 	T& maxValue,
 	const Less& less = std::less<T>)
 {
-	auto large = arr.begin();
+	auto theBiggest = arr.begin();
 	for (auto it = arr.begin(); it != arr.end(); ++it)
 	{
-		if (less(*large, *it))
+		if (less(*theBiggest, *it))
 		{
-			large = it;
+			theBiggest = it;
 		}
 	}
-	if (large != arr.end())
+	if (theBiggest != arr.end())
 	{
-		maxValue = *large;
+		maxValue = *theBiggest;
 		return true;
 	}
 	return false;

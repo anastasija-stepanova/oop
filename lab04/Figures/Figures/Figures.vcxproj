@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClInclude Include="CCanvas.h" />
     <ClInclude Include="CCircle.h" />
+    <ClInclude Include="CCommands.h" />
     <ClInclude Include="CLineSegment.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="CPoint.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="CUtilites.h" />
     <ClInclude Include="ICanvas.h" />
     <ClInclude Include="ICanvasDrawable.h" />
+    <ClInclude Include="ICommand.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="ISolidShape.h" />
     <ClInclude Include="stdafx.h" />
@@ -184,6 +186,7 @@
   <ItemGroup>
     <ClCompile Include="CCanvas.cpp" />
     <ClCompile Include="CCircle.cpp" />
+    <ClCompile Include="CCommands.cpp" />
     <ClCompile Include="CLineSegment.cpp" />
     <ClCompile Include="CPoint.cpp" />
     <ClCompile Include="CRectangle.cpp" />

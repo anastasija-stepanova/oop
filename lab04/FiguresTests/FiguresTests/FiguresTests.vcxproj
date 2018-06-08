@@ -181,6 +181,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Figures\Figures\CCanvas.h" />
     <ClInclude Include="..\..\Figures\Figures\CCircle.h" />
+    <ClInclude Include="..\..\Figures\Figures\CCommands.h" />
     <ClInclude Include="..\..\Figures\Figures\CLineSegment.h" />
     <ClInclude Include="..\..\Figures\Figures\Config.h" />
     <ClInclude Include="..\..\Figures\Figures\CPoint.h" />
@@ -192,6 +193,7 @@
     <ClInclude Include="..\..\Figures\Figures\CUtilites.h" />
     <ClInclude Include="..\..\Figures\Figures\ICanvas.h" />
     <ClInclude Include="..\..\Figures\Figures\ICanvasDrawable.h" />
+    <ClInclude Include="..\..\Figures\Figures\ICommand.h" />
     <ClInclude Include="..\..\Figures\Figures\IShape.h" />
     <ClInclude Include="..\..\Figures\Figures\ISolidShape.h" />
     <ClInclude Include="stdafx.h" />
@@ -200,6 +202,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Figures\Figures\CCanvas.cpp" />
     <ClCompile Include="..\..\Figures\Figures\CCircle.cpp" />
+    <ClCompile Include="..\..\Figures\Figures\CCommands.cpp" />
     <ClCompile Include="..\..\Figures\Figures\CLineSegment.cpp" />
     <ClCompile Include="..\..\Figures\Figures\CPoint.cpp" />
     <ClCompile Include="..\..\Figures\Figures\CRectangle.cpp" />

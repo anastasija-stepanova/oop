@@ -66,6 +66,12 @@
     <ClInclude Include="..\..\Figures\Figures\ISolidShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Figures\Figures\CCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Figures\Figures\ICommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -114,6 +120,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Figures\Figures\ISolidShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Figures\Figures\CCommands.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

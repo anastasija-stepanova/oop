@@ -2,25 +2,32 @@
 #include "CCanvas.h"
 #include "CPoint.h"
 #include "IShape.h"
+#include "CCommands.h"
 
 class CShapeCreator
 {
 public:
-	CShapeCreator(std::istream& input);
-	~CShapeCreator();
-	std::shared_ptr<IShape> HandleCommand() const;
-
+	CShapeCreator();
+	~CShapeCreator() = default;
+	void Run(std::istream& stream);
 private:
-	std::map<std::string, std::function<std::shared_ptr<IShape>(std::istringstream& strm)>> m_actionMap;
-	std::shared_ptr<IShape> CreateLine(std::istringstream& strm) const;
-	std::shared_ptr<IShape> CreateTriangle(std::istringstream& strm) const;
-	std::shared_ptr<IShape> CreateRectangle(std::istringstream& strm) const;
-	std::shared_ptr<IShape> CreateCircle(std::istringstream& strm) const;
+	struct Item
+	{
+		Item(const std::string& shortcut, std::unique_ptr<ICommand>&& command)
+			:shortcut(shortcut)
+			,command(std::move(command))
+		{
+		}
+		std::string shortcut;
+		std::unique_ptr<ICommand> command;
+	};
 
-	std::istream& m_input;
+	void AddItem(const std::string & shortcut, std::unique_ptr<ICommand> && command)
+	{
+		m_actionMap.emplace_back(shortcut, std::move(command));
+	}
 
-	void AddOpacityToColor(std::string& color) const;
-	static bool IsHexColor(const std::string& color);
-	static CPoint GetPointFromInput(std::istringstream& strm);
-	static bool IsValidColor(const std::string& color);
+	using ActionMap = std::vector<Item>;
+	ActionMap m_actionMap;
+	std::vector<std::unique_ptr<IShape>> m_shapes;
 };

@@ -26,7 +26,6 @@ private:
 	std::string ParseDomain(std::string const& domain);
 	unsigned short ParsePort(std::string const& url);
 	std::string ParseDocument(std::string const& url);
-	bool CheckPortInRange(unsigned short port);
 
 	std::string m_url;
 	std::string m_domain;

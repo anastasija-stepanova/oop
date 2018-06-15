@@ -52,7 +52,7 @@ public:
 
 	NodeType* operator->()const
 	{
-		return (&m_node->data).value();
+		return (&m_node->data);
 	}
 
 	CMyIterator<T> operator++(int)

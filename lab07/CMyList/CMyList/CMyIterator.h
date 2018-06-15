@@ -6,6 +6,7 @@ template <typename T>
 class CMyIterator : public std::iterator<std::bidirectional_iterator_tag, T>
 {
 public:
+	typedef std::bidirectional_iterator_tag iterator_category;
 	using NodeType = Node<std::decay_t<T>>;
 
 	CMyIterator() = default;

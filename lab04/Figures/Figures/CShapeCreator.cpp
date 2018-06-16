@@ -26,7 +26,7 @@ void CShapeCreator::Run(istream& stream)
 		boost::split(params, command, boost::is_space());
 
 		auto action = boost::find_if(m_actionMap, [&](const Item& item) {
-			return item.shortcut == command;
+			return item.shortcut == params[0];
 		});
 
 		if (action == boost::end(m_actionMap))
